@@ -1,0 +1,21 @@
+services:
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  api:
+    build: .
+    container_name: fastapi_app
+    ports:
+      - "8000:80"
+    depends_on:
+      - mongodb
+
+volumes:
+  mongo_data:
+
+  
